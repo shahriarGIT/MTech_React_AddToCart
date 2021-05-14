@@ -1,1 +1,4 @@
-export const API = "https://fakestoreapi.com/products";
+const API = "https://fakestoreapi.com/products";
+
+export default API;
+

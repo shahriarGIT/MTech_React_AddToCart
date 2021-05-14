@@ -1,10 +1,19 @@
+import Nav from '../components/header/Nav'
+import Body from '../components/body/Body'
+
+
 const Main = () => {
 
 
     return (
         <div>
-            <h1>hello from main</h1>
-        </div>
+            <Nav />
+            <div className="container-fluid">
+                <Body />
+            </div>
+
+
+        </div >
     )
 }
 
