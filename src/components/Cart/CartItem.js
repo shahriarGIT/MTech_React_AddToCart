@@ -100,9 +100,9 @@ class CartItem extends Component {
             let addSubButton = (
 
                 <div style={btnStyle}>
-                    <button onClick={() => this.removeItemAndDecrement(item)} style={btnStyle, { textAlign: "center", margin: "auto", padding: "5% 7%" }} className="nav-link btn-xs btn btn-danger ">-</button>
+                    <button onClick={() => this.removeItemAndDecrement(item)} style={btnStyle, { textAlign: "center", margin: "auto", padding: "5px 5px" }} className="nav-link btn-xs btn btn-danger ">-</button>
                     <span style={{ padding: "50% 20%" }}>{countFromStore}</span>
-                    <button onClick={() => this.addItemAndIncrement(item)} style={btnStyle, { textAlign: "center", margin: "auto", padding: "5% 7%" }} className="nav-link btn btn-xs btn-primary ">+ </button>
+                    <button onClick={() => this.addItemAndIncrement(item)} style={btnStyle, { textAlign: "center", margin: "auto", padding: "5px 5px" }} className="nav-link btn btn-xs btn-primary ">+ </button>
 
                 </div>
             )

@@ -2,6 +2,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { fetchProduct, toggleModal } from '../../redux/actionCreators'
+import Logo from '../../assets/images/logo1.jpg'
 
 const mapStateToProps = state => {
     return {
@@ -46,15 +47,32 @@ class Nav extends Component {
             badge = this.props.cartLength;
         }
 
-        return (
-            <nav className='navbar sticky-top navbar-dark bg-dark'>
-                <ul className="nav ml-auto nav-tabs" >
-                    <li className="nav-item">
-                        <button onClick={this.props.toggleModal} className="nav-link btn btn-danger">View Cart<span style={{ marginLeft: "5px" }} class="badge badge-light">{badge}</span></button>
-                    </li>
 
-                </ul>
-            </nav>
+        return (
+
+            <nav className='navbar sticky-top navbar-dark bg-dark'>
+                <nav class="navbar navbar-light bg-dark">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="/">
+
+                            E-Commerce
+    </a>
+                    </div>
+
+                </nav>
+                <div>
+                    <button onClick={this.props.toggleModal} className="container nav-link btn btn-danger">View Cart<span style={{ marginLeft: "5px" }} class="badge badge-light">{badge}</span></button>
+                </div>
+
+
+
+
+
+
+
+
+
+            </nav >
         )
 
     }

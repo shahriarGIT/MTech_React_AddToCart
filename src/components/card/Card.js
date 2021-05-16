@@ -150,10 +150,10 @@ class Card extends Component {
                     />
                     <div className="card-body">
                         <div style={{ minHeight: "3em" }}>
-                            <p style={titleStyle}>{this.props.product.title}</p>
+                            <p style={titleStyle}><b> {this.props.product.title}</b></p>
                         </div>
 
-                        Price -<span style={{ fontSize: 20 }}> &#2547;</span>{this.props.product.price}
+                        <b>Price -</b> <span style={{ fontSize: 20 }}> &#2547;</span> <b> {this.props.product.price}</b>
                         <br />
 
 
