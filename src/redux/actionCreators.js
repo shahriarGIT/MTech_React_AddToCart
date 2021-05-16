@@ -79,6 +79,14 @@ export const removeFromCart = product => {
     }
 }
 
+// Remove Single Item from Array
+export const removeItem = item => {
+    return {
+        type: actionTypes.REMOVE_ITEM_FROM_CART,
+        payload: item
+    }
+}
+
 
 
 

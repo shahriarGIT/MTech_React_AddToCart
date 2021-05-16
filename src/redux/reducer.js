@@ -21,28 +21,33 @@ const INITIAL_STATE = {
 export const reducer = (state = INITIAL_STATE, action) => {
 
     switch (action.type) {
-
+        //Fetch products from API
         case actionTypes.LOAD_PRODUCTS:
             return {
                 ...state,
                 products: action.payload
             }
+        //Show Loading
         case actionTypes.LOADING:
             return {
                 ...state,
                 loading: action.payload
             }
+        //Show Error Message
         case actionTypes.ERROR_MESSAGE:
             return {
                 ...state,
                 errorStatus: action.payload.errSts,
                 errorMsg: action.payload.errMsg
             }
+        // Turn off on Modal
         case actionTypes.TOGGLE_MODAL:
             return {
                 ...state,
                 modalOpen: !state.modalOpen
             }
+
+        //Add items to cart
         case actionTypes.ADD_TO_CART:
             let newObj = action.payload;
             if (state.cartItems.length === 0) {
@@ -74,11 +79,11 @@ export const reducer = (state = INITIAL_STATE, action) => {
                     }
                 }
             }
+        // Remove Items from cart
         case actionTypes.REMOVE_FROM_CART:
             let exist = state.cartItems.indexOf(action.payload);
             if (exist !== -1) {
                 if (state.cartItems[exist].number === 1) {
-                    //state.cartItems[exist].number = 0;
                     state.cartItems.splice(exist, 1)
                     state.cartLength = state.cartItems.length;
                     console.log("from remove reducer", state.cartItems);
@@ -88,12 +93,9 @@ export const reducer = (state = INITIAL_STATE, action) => {
                     }
                 }
                 else if (state.cartItems[exist].number > 1) {
-                    // state.cartItems[exist].number = state.cartItems[exist].number - 1;
                     state.cartItems[exist].number--;
                     return {
                         ...state,
-                        //cartItems[exist].number = cartItems[exist].number - 1
-
                         cartItems: state.cartItems
                     }
 
@@ -101,7 +103,17 @@ export const reducer = (state = INITIAL_STATE, action) => {
 
             }
 
+        // Remove Signle item from cart list
+        case actionTypes.REMOVE_ITEM_FROM_CART:
+            console.log("remove");
+            let index = state.cartItems.indexOf(action.payload);
+            state.cartItems.splice(index, 1);
 
+            return {
+                ...state,
+                cartItems: state.cartItems,
+                cartLength: state.cartItems.length
+            }
         default:
             return state;
     }

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { fetchProduct, toggleModal, addToCart, removeFromCart } from '../../redux/actionCreators'
+import { addToCart, removeFromCart } from '../../redux/actionCreators'
 import { connect } from 'react-redux'
-import { findByLabelText } from '@testing-library/dom';
 
 const mapStateToProps = state => {
     return {
@@ -53,16 +52,13 @@ class Card extends Component {
 
         this.props.addToCart(item);
         this.increment();
-        //console.log(this.props.cartItems[0].id, " ", this.props.cartItems[0].number);
 
     }
 
     removeItemAndDecrement = item => {
         this.props.removeFromCart(item);
         this.decrement();
-        //console.log(this.props.cartItems[0].id, " ", this.props.cartItems[0].number);
 
-        //console.log(this.props.cartItems.length);
     }
 
     componentDidUpdate() {
@@ -118,16 +114,13 @@ class Card extends Component {
 
         if (this.props.cartItems.length > 0) {
             if (this.props.cartItems.indexOf(this.props.product) !== -1) {
-                //  if (this.state.count === 0) {
-                //buttonHolder = <button onClick={() => this.props.addToCart(this.props.product)} className="btn btn-outline-primary btn-xs" >Add to Cart</button>
-                //  }
-                //else {
+
 
                 buttonHolder = addSubButton
-                // }
+
             }
             else {
-                //this.setState({ count: 1 })
+
                 buttonHolder = <button onClick={() => this.props.addToCart(this.props.product)} className="btn btn-primary btn-xs" >Add to Cart</button>
             }
 

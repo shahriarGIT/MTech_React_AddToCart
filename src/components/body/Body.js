@@ -4,7 +4,7 @@ import { fetchProduct, toggleModal } from '../../redux/actionCreators'
 import Spinner from '../../utility/spinner/Spinner'
 import Card from '../card/Card'
 import CartItem from '../Cart/CartItem'
-import { CardColumns, Modal, ModalBody, ModalFooter, Button, ModalHeader } from 'reactstrap';
+import { Modal, ModalBody, ModalFooter, Button, Alert } from 'reactstrap';
 
 
 const mapStateToProps = state => {
@@ -30,25 +30,27 @@ class Body extends Component {
 
     state = {
         addedProduct: [],
-        count: 0
+        count: 0,
+        AlertMsg: null
     }
 
     componentDidMount() {
         this.props.fetchProduct();
 
-        //console.log(this.props.products);
     }
-
-    componentDidUpdate() {
-        //console.log(this.props.products);
-        //this.props.fetchProduct();
-    }
-
 
 
 
 
     render() {
+
+        const showAlert = () => {
+            this.setState({ AlertMsg: <Alert style={{ margin: "20px" }} color="success">Your order has been placed.</Alert> })
+
+            setTimeout(() => {
+                this.setState({ AlertMsg: null })
+            }, 2000);
+        }
 
 
         let productCard = this.props.products.map(product => {
@@ -79,23 +81,26 @@ class Body extends Component {
                     <div style={{ display: "flex", width: "100%" }}>
 
                         <h3 style={{ marginTop: "2%", marginLeft: "35%" }}>Cart Items</h3>
-                        <Button style={{ marginLeft: "auto" }} color="btn btn-outline-danger" onClick={this.props.toggleModal}>
-                            X
-                             </Button>
+                        <Button style={{ marginLeft: "auto" }} color="btn btn-outline-danger" onClick={this.props.toggleModal}>X </Button>
                     </div>
 
+                    <div>
 
+                        {this.props.cartItems.length > 0 ? this.state.AlertMsg : null}
+
+                    </div>
 
 
                     <ModalBody >
 
                         {<CartItem />}
                     </ModalBody>
+                    <ModalFooter >
+                        <button style={{ padding: "1% 30%", marginRight: "11%" }} class="btn btn-success btn-lg" onClick={showAlert}> Checkout </button>
 
-                    {/* < CommentForm item={this.state.selectedImage} /> */}
-                    <Button color="btn btn-outline-danger" onClick={this.props.toggleModal}>
-                        Close Cart
-                    </Button>
+                    </ModalFooter>
+
+                    <Button color="btn btn-danger" onClick={this.props.toggleModal}>  Close Cart </Button>
                 </Modal>
 
             </div>

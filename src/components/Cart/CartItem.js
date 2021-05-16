@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { fetchProduct, toggleModal, addToCart, removeFromCart } from '../../redux/actionCreators'
+import { addToCart, removeFromCart, removeItem } from '../../redux/actionCreators'
 import { connect } from 'react-redux'
 import { Alert } from 'reactstrap'
 
@@ -10,14 +10,16 @@ const mapStateToProps = state => {
         errSts: state.errStatus,
         errMsg: state.errMsg,
         modtalStatus: state.modalOpen,
-        cartItems: state.cartItems
+        cartItems: state.cartItems,
+        cartLength: state.cartLength
     }
 }
 
 const mapDispatchToProps = dispatch => {
     return {
         addToCart: (product) => dispatch(addToCart(product)),
-        removeFromCart: (product) => dispatch(removeFromCart(product))
+        removeFromCart: (product) => dispatch(removeFromCart(product)),
+        removeItem: (item) => dispatch(removeItem(item))
     }
 
 }
@@ -53,16 +55,19 @@ class CartItem extends Component {
 
         this.props.addToCart(item);
         this.increment();
-        //console.log(this.props.cartItems[0].id, " ", this.props.cartItems[0].number);
 
     }
 
     removeItemAndDecrement = item => {
         this.props.removeFromCart(item);
         this.decrement();
-        //console.log(this.props.cartItems[0].id, " ", this.props.cartItems[0].number);
 
-        //console.log(this.props.cartItems.length);
+    }
+
+    remove = item => {
+        this.props.removeItem(item);
+        this.setState({ cartLength: this.props.cartLength })
+
     }
 
     render() {
@@ -109,14 +114,14 @@ class CartItem extends Component {
             return (
 
 
-                <div>
+                <div key={item.id}>
 
                     <div style={cartItemStyle, { margin: "3%" }}>
 
                         <hr />
                         <div style={cartItemStyle}>
                             <p style={cartItemStyle}> <b>{item.title}</b> </p>
-                            <button className="nav-link btn-sm btn btn-danger" style={btnStyle, { marginLeft: "auto", padding: "1% 2%", height: "30px" }}>x</button>
+                            <button onClick={() => this.remove(item)} className="nav-link btn-sm btn btn-danger" style={btnStyle, { marginLeft: "auto", padding: "1% 2%", height: "30px" }}>x</button>
                         </div>
 
                         <div style={cartItemStyle}>
