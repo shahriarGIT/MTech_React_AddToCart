@@ -7,5 +7,5 @@ export const store = createStore(reducer, applyMiddleware(thunk));
 
 
 store.subscribe(() => {
-    // console.log("Subs ", store.getState());
+    console.log("Subs ", store.getState());
 })

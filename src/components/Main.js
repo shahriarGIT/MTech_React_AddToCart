@@ -6,9 +6,9 @@ const Main = () => {
 
 
     return (
-        <div>
+        <div style={{ background: "#f8f5f1" }}>
             <Nav />
-            <div className="container-fluid">
+            <div className="container">
                 <Body />
             </div>
 

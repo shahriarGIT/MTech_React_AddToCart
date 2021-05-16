@@ -12,6 +12,7 @@ export const fetchProduct = () => dispatch => {
                 dispatch(loading(false));
                 dispatch(loadProducts(response.data));
 
+
             }
             else {
                 dispatch(loading(false));
@@ -54,3 +55,30 @@ export const errorMessage = errMsg => {
         }
     }
 }
+
+
+// Modal Toggle
+export const toggleModal = () => {
+    return {
+        type: actionTypes.TOGGLE_MODAL
+    }
+}
+
+
+export const addToCart = product => {
+    return {
+        type: actionTypes.ADD_TO_CART,
+        payload: product
+    }
+}
+
+export const removeFromCart = product => {
+    return {
+        type: actionTypes.REMOVE_FROM_CART,
+        payload: product
+    }
+}
+
+
+
+
